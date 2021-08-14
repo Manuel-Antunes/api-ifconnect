@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import Media from './Media'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -14,6 +15,12 @@ export default class User extends BaseModel {
 
   @column()
   public isTeacher: boolean
+
+  @column()
+  public profileId: number
+
+  @belongsTo(() => Media, { localKey: 'profile_id' })
+  public media: BelongsTo<typeof Media>
 
   @column({ serializeAs: null })
   public password: string
