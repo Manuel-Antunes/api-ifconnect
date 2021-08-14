@@ -4,13 +4,21 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 export default class StoreValidator {
   constructor(protected ctx: HttpContextContract) {}
   public schema = schema.create({
-    email: schema.string({}, [rules.email(), rules.required()]),
+    name: schema.string({}, [rules.required()]),
+    email: schema.string({}, [
+      rules.email(),
+      rules.required(),
+      rules.unique({ table: 'users', column: 'email' }),
+    ]),
     password: schema.string({}, [rules.required(), rules.minLength(8)]),
+    isTeacher: schema.boolean.optional([]),
   })
   public messages = {
-    'email.required': 'o email é obrigatorio',
+    'name.required': 'o nome é obrigatório',
+    'email.required': 'o email é obrigatório',
     'email.email': 'o campo precisa ser formatado como um email',
-    'password.required': 'a senha é obrigatoria',
-    'password.minLength': 'a senha precisa ter no minimo 8 caracteres',
+    'email.unique': 'este endereço de email já existe',
+    'password.required': 'a senha é obrigatória',
+    'password.minLength': 'a senha precisa ter no mínimo 8 caracteres',
   }
 }
