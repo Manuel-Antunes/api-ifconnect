@@ -20,7 +20,7 @@ export default class Media extends BaseModel {
 
   @computed()
   public get url() {
-    return Env.get('HOST') + '/media/' + this.id
+    return Env.get('APP_URL') + '/media/' + this.id
   }
 
   @column.dateTime({ autoCreate: true })
