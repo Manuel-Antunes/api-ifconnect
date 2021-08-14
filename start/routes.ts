@@ -24,3 +24,4 @@ Route.get('/', async () => {
 })
 Route.resource('users', 'UsersController').apiOnly()
 Route.resource('classrooms', 'ClassroomsController').apiOnly()
+Route.post('/auth', 'AuthController.store')
