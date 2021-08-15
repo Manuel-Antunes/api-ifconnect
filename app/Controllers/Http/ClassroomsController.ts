@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Classroom from 'App/Models/Classroom'
+import User from 'App/Models/User'
 import StoreValidator from 'App/Validators/Classroom/StoreValidator'
 import UpdateValidator from 'App/Validators/Classroom/UpdateValidator'
 
@@ -9,10 +10,20 @@ export default class ClassroomsController {
     return classrooms
   }
 
-  public async store({ request }: HttpContextContract) {
+  public async store({ request, response }: HttpContextContract) {
     const data = await request.validate(StoreValidator)
-    const classroom = await Classroom.create(data)
-    return classroom
+    try {
+      const user = await User.findOrFail(data.userId)
+      if (!user.isTeacher) {
+        return response
+          .status(400)
+          .json({ error: { message: 'o usuário selecionado não é um professor' } })
+      }
+      const classroom = await Classroom.create(data)
+      return classroom
+    } catch (error) {
+      return response.status(400).json({ error: { message: 'professor não encontrado' } })
+    }
   }
 
   public async show({ params, response }: HttpContextContract) {

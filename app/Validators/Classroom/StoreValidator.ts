@@ -6,7 +6,7 @@ export default class StoreValidator {
   public schema = schema.create({
     name: schema.string({}, [rules.required()]),
     subject: schema.string({}, [rules.required()]),
-    userId: schema.number([rules.required(), rules.exists({ table: 'users', column: 'id' })]),
+    userId: schema.number([rules.required()]),
   })
   public messages = {
     'name.required': 'o nome é obrigatorio',
