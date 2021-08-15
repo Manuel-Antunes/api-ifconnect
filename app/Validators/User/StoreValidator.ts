@@ -10,11 +10,13 @@ export default class StoreValidator {
       rules.required(),
       rules.unique({ table: 'users', column: 'email' }),
     ]),
+    profileId: schema.number.optional([rules.exists({ column: 'id', table: 'media' })]),
     password: schema.string({}, [rules.required(), rules.minLength(8)]),
     isTeacher: schema.boolean.optional([]),
   })
   public messages = {
     'name.required': 'o nome é obrigatório',
+    'profileId.exists': 'a foto de perfil não foi enviada corretamente',
     'email.required': 'o email é obrigatório',
     'email.email': 'o campo precisa ser formatado como um email',
     'email.unique': 'este endereço de email já existe',
