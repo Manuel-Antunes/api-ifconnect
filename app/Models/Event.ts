@@ -18,7 +18,7 @@ export default class Event extends BaseModel {
   @column.dateTime()
   public date: DateTime
 
-  @belongsTo(() => User, { localKey: 'creator_id' })
+  @belongsTo(() => User, { foreignKey: 'creatorId' })
   public creator: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
