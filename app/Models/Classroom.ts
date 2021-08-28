@@ -26,7 +26,7 @@ export default class Classroom extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
-  @manyToMany(() => Post)
+  @manyToMany(() => Post, { pivotTable: 'post_classrooms' })
   public posts: ManyToMany<typeof Post>
 
   @column.dateTime({ autoCreate: true })

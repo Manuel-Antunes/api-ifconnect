@@ -25,10 +25,10 @@ export default class Post extends BaseModel {
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 
-  @manyToMany(() => Media)
+  @manyToMany(() => Media, { pivotTable: 'post_media' })
   public media: ManyToMany<typeof Media>
 
-  @manyToMany(() => Classroom)
+  @manyToMany(() => Classroom, { pivotTable: 'post_classrooms' })
   public classroom: ManyToMany<typeof Classroom>
 
   @manyToMany(() => User, { serializeAs: null })
