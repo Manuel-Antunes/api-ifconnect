@@ -18,6 +18,8 @@ export default class PostMedias extends BaseSchema {
         .inTable('media')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
+      table.unique(['post_id'])
+      table.unique(['post_id', 'media_id'])
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
