@@ -23,7 +23,7 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.resource('users', 'UsersController')
-  .middleware({ '*': ['auth'] })
+  .middleware({ update: ['auth'], destroy: ['auth'], index: ['auth'], show: ['auth'] })
   .apiOnly()
 Route.resource('classrooms', 'ClassroomsController')
   .middleware({ '*': ['auth'] })
