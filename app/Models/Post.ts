@@ -5,8 +5,6 @@ import {
   BelongsTo,
   column,
   computed,
-  HasMany,
-  hasMany,
   ManyToMany,
   manyToMany,
 } from '@ioc:Adonis/Lucid/Orm'
@@ -33,8 +31,8 @@ export default class Post extends BaseModel {
   @manyToMany(() => Classroom)
   public classroom: ManyToMany<typeof Classroom>
 
-  @hasMany(() => User, { serializeAs: null })
-  public usersWhoLike: HasMany<typeof User>
+  @manyToMany(() => User, { serializeAs: null })
+  public usersWhoLike: ManyToMany<typeof User>
 
   @computed()
   public get likes() {
