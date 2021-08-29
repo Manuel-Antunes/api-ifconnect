@@ -1,12 +1,15 @@
 import { DateTime } from 'luxon'
 import {
   BaseModel,
+  beforeFetch,
+  beforeFind,
   belongsTo,
   BelongsTo,
   column,
   computed,
   ManyToMany,
   manyToMany,
+  ModelQueryBuilderContract,
 } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Media from './Media'
@@ -34,9 +37,15 @@ export default class Post extends BaseModel {
   @manyToMany(() => User, { serializeAs: null })
   public usersWhoLike: ManyToMany<typeof User>
 
+  @beforeFetch()
+  @beforeFind()
+  public static ignoreDeleted(query: ModelQueryBuilderContract<typeof Post>) {
+    query.preload('usersWhoLike')
+  }
+
   @computed()
   public get likes() {
-    return this.usersWhoLike.length
+    return this.usersWhoLike ? this.usersWhoLike.length : 0
   }
 
   @column.dateTime({ autoCreate: true })
