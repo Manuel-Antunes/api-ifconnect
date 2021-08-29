@@ -12,6 +12,8 @@ export default class ClassroomPostsController {
         : await classroom.related('posts').query()
       return posts
     } catch (err) {
+      console.log(err)
+
       return response.status(400).send({ error: { message: 'class not found' } })
     }
   }
