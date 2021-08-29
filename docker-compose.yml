@@ -2,7 +2,7 @@ version: '2.0'
 services:
   database:
     image: postgres
-    container_name: database
+    container_name: db
     environment:
       POSTGRES_DB: ${PG_DB_NAME}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
@@ -11,6 +11,6 @@ services:
       - 5432:${PG_PORT}
   mongo:
     image: mongo
-    container_name: database
+    container_name: mongo
     ports:
       - '27017:27017'
