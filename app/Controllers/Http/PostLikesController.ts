@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
 
 export default class PostLikesController {
-  public async store({ params, auth, response }: HttpContextContract) {
+  public async update({ params, auth, response }: HttpContextContract) {
     try {
       const post = await Post.findOrFail(params.post_id)
       if (auth.user) {
