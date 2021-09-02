@@ -34,7 +34,7 @@ export default class Post extends BaseModel {
   @manyToMany(() => Classroom, { pivotTable: 'post_classrooms' })
   public classroom: ManyToMany<typeof Classroom>
 
-  @manyToMany(() => User, { serializeAs: null })
+  @manyToMany(() => User, { serializeAs: null, pivotTable: 'like_posts' })
   public usersWhoLike: ManyToMany<typeof User>
 
   @beforeFetch()
