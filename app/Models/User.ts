@@ -23,6 +23,15 @@ export default class User extends BaseModel {
   public name: string
 
   @column()
+  public username: string
+
+  @column()
+  public gender: string
+
+  @column()
+  public position?: string
+
+  @column()
   public isTeacher: boolean
 
   @column()
