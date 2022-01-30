@@ -1,2 +1,3 @@
+release: ENV_SILENT=true node ace migration:run
 build: yarn build
-web: yarn start
+web: ENV_SILENT=true node ace migration:run && yarn start
