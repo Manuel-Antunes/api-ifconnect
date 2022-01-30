@@ -1,13 +1,13 @@
-import { ConnectOptions } from 'mongoose'
-import Env from '@ioc:Adonis/Core/Env'
+// import { ConnectOptions } from 'mongoose'
+// import Env from '@ioc:Adonis/Core/Env'
 
-interface MongoConfig {
-  url: string
-  config?: ConnectOptions
-}
+// interface MongoConfig {
+//   url: string
+//   config?: ConnectOptions
+// }
 
-const mongoConfig: MongoConfig = {
-  url: Env.get('MONGO_URL'),
-}
+// const mongoConfig: MongoConfig = {
+//   url: Env.get('MONGO_URL'),
+// }
 
-export default mongoConfig
+// export default mongoConfig
