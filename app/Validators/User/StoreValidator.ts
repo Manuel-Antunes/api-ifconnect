@@ -18,14 +18,13 @@ export default class StoreValidator {
   })
   public messages = {
     'name.required': 'o nome é obrigatório',
-    'username.required': 'o username é obrigatório',
+    'username.required': 'o nome de usuário é obrigatório',
     'profileId.exists': 'a foto de perfil não foi enviada corretamente',
     'email.required': 'o email é obrigatório',
     'email.email': 'o campo precisa ser formatado como um email',
     'email.unique': 'este endereço de email já existe',
     'password.required': 'a senha é obrigatória',
     'password.minLength': 'a senha precisa ter no mínimo 8 caracteres',
-    'position.required': 'o campo position é obrigratório',
-    'gender.required': 'o campo gender é obrigatório',
+    'gender.required': 'o campo gênero é obrigatório',
   }
 }
