@@ -1,5 +1,6 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { Position } from 'App/Models/User'
 
 export default class StoreValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -13,7 +14,7 @@ export default class StoreValidator {
     ]),
     profileId: schema.number.optional([rules.exists({ column: 'id', table: 'media' })]),
     password: schema.string({}, [rules.required(), rules.minLength(8)]),
-    position: schema.string({}, [rules.required()]),
+    position: schema.enum.optional(Object.values(Position)),
     gender: schema.string({}, [rules.required()]),
   })
   public messages = {
