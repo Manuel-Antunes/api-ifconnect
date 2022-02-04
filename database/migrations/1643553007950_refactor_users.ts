@@ -7,7 +7,13 @@ export default class RefactorUsers extends BaseSchema {
     this.schema.alterTable(this.tableName, (table) => {
       table.dropColumn('is_teacher')
       table.string('gender', 50).notNullable()
-      table.string('position').nullable()
+      table
+        .enum('position', ['teacher', 'student', 'visitant'], {
+          useNative: true,
+          enumName: 'positions_values',
+          existingType: false,
+        })
+        .nullable()
       table.string('username').notNullable()
     })
   }
