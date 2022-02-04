@@ -12,6 +12,12 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 import Media from './Media'
 
+export enum Position {
+  TEACHER = 'teacher',
+  STUDENT = 'student',
+  VISITANT = 'visitant',
+}
+
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
@@ -21,6 +27,15 @@ export default class User extends BaseModel {
 
   @column()
   public name: string
+
+  @column()
+  public username: string
+
+  @column()
+  public gender: string
+
+  @column()
+  public position?: Position
 
   @column()
   public isTeacher: boolean
